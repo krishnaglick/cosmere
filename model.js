@@ -1,6 +1,6 @@
 
 const mongoose = require('mongoose');
-mongoose.Promise = require('bluebird');
+mongoose.Promise = Promise;
 const { mongoUrl } = require('./config.json');
 
 const connectedMongoose = mongoose.connect('mongodb://192.168.99.100/wob');
