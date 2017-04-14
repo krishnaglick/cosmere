@@ -1,7 +1,35 @@
 {
+  "name": "cosmere",
+  "version": "1.0.0",
+  "description": "Scraper for WoB's",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "restore": "node index.js usedSaved",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/krishnaglick/cosmere.git"
+  },
+  "keywords": [
+    "cosmere",
+    "brandon",
+    "sanderson"
+  ],
+  "author": "Krishna Glick",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/krishnaglick/cosmere/issues"
+  },
+  "homepage": "https://github.com/krishnaglick/cosmere#readme",
   "dependencies": {
     "cheerio": "^0.22.0",
     "lodash": "^4.17.4",
     "mongoose": "^4.9.4"
+  },
+  "devDependencies": {
+    "babel-eslint": "^7.2.2",
+    "eslint": "^3.19.0"
   }
 }

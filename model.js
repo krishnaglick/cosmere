@@ -2,7 +2,7 @@
 const mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
 
-const connectedMongoose = mongoose.connect('mongodb://192.168.99.100/wob');
+const connectedMongoose = mongoose.connect(mongoUrl || 'mongodb://192.168.99.100/wob');
 
 const schema = new connectedMongoose.Schema({
   date: String,
