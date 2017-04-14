@@ -7,7 +7,6 @@ const _ = require('lodash');
 
 async function promiseScrape(tag) {
   return new Promise((res, rej) => {
-    console.log({tag});
     try {
       const request = http.request({
         hostname: 'www.theoryland.com',
@@ -49,10 +48,14 @@ async function parseHtml(html) {
       return;
     let tags = '';
     let id = '';
+    let title = '';
     const filteredConversation = _.filter(conversation.map((index, element) => {
       element = $(element);
       if([0,1].includes(index)) {
         id += element.text().replace(/( |,|:|\n|\t)/g, '');
+        if(index === 1) {
+          title = element.text().trim();
+        }
         return null;
       }
       if(index === conversation.length - 2)
@@ -67,6 +70,7 @@ async function parseHtml(html) {
     powerWoBs.push({
       date,
       tags,
+      title,
       conversation: filteredConversation,
       id
     });
@@ -92,10 +96,11 @@ const filters = ['wot', 'robert', 'jordan', 'wheel of time'];
     }
     else {
       for(let i = 0; i < tags.length; i++) {
+        console.log(tags[i]);
         wobs.push(await parseHtml(await promiseScrape(tags[i])));
         sleep(1000);
       }
-      (require('fs')).writeFileSync(require('path').resolve('./data.json'), JSON.stringify(wobs), 'UTF-8');
+      (require('fs')).writeFileSync(require('path').resolve('./data.json'), JSON.stringify(wobs, null, 2), 'UTF-8');
     }
     await Promise.all(_.map(wobs, async (words) => {
       for(let q = 0; q < words.length; q++) {
