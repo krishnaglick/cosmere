@@ -2,7 +2,7 @@
 const mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
 
-const config = require('config') || {};
+const config = require('./config') || {};
 
 const connectedMongoose = mongoose.connect(config.mongoUrl || 'mongodb://192.168.99.100/wob');
 
